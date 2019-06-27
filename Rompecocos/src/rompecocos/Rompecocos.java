@@ -5,11 +5,14 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -90,14 +93,26 @@ public class Rompecocos extends JFrame {
 		centralPanel.setLayout(new GridLayout(gridSize, gridSize));
 		add(centralPanel, BorderLayout.CENTER);
 		
+		int id = 0;
+		
 		for(int row = 0; row < gridSize; row++) {
 			for(int col = 0; col < gridSize; col++) {
+				int x = col*fichaSize;
+				int y = row*fichaSize;
 				
+				BufferedImage subImage = bufferImage.getSubimage(x, y, fichaSize, fichaSize);
+				ImageIcon buttonImage = new ImageIcon(subImage);
+				
+				tablero[row][col] = new Ficha(buttonImage, id, row, col);
+				tablero[row][col].addMouseListener(escucha);
+				
+				centralPanel.add(tablero[row][col]);
+				id++;
 			}
 		}
 	}
 	
-	private class Escuchas implements ActionListener {
+	private class Escuchas extends MouseAdapter implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent eA) {
@@ -114,6 +129,12 @@ public class Rompecocos extends JFrame {
 				}
 			}
 			
+		}
+		
+		@Override
+		public void mouseClicked(MouseEvent eM) {
+			// TODO Auto-generated method stub
+			//Intercambiar fichas
 		}
 		
 	}
