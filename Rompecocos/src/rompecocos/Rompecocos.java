@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import misComponentes.Titulos;
+//import misComponentes.Titulos;
 
 public class Rompecocos extends JFrame {
 	
