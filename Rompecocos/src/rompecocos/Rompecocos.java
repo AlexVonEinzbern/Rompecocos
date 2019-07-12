@@ -112,6 +112,27 @@ public class Rompecocos extends JFrame {
 		}
 	}
 	
+	private void clickedFicha(Ficha fichaClick) {
+		int row = fichaClick.getRow();
+		int col = fichaClick.getCol();
+		
+		if(row > 0 && tablero[row-1][col].hasNoImage()) {
+			fichaClick.intercambiar(tablero[row-1][col]);
+		} else {
+			if(row < gridSize-1 && tablero[row+1][col].hasNoImage()) {
+				fichaClick.intercambiar(tablero[row+1][col]);
+			} else {
+				if(col > 0 && tablero[row][col-1].hasNoImage()) {
+					fichaClick.intercambiar(tablero[row][col-1]);
+				} else {
+					if(col < gridSize-1 && tablero[row][col+1].hasNoImage()) {
+						fichaClick.intercambiar(tablero[row][col+1]);
+					}
+				}
+			}
+		}
+	}
+	
 	private class Escuchas extends MouseAdapter implements ActionListener {
 
 		@Override
@@ -135,6 +156,8 @@ public class Rompecocos extends JFrame {
 		public void mouseClicked(MouseEvent eM) {
 			// TODO Auto-generated method stub
 			//Intercambiar fichas
+			Ficha fichaClick= (Ficha)eM.getSource();
+			clickedFicha(fichaClick);
 		}
 		
 	}

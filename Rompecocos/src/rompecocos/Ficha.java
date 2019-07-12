@@ -23,8 +23,8 @@ public class Ficha extends JButton {
 		this.setBackground(Color.WHITE);
 		Dimension size = new Dimension(fichaSize, fichaSize);
 		this.setPreferredSize(size);
-		//this.setBorder(null);
-		//this.setFocusPainted(false);
+		this.setBorder(null);
+		this.setFocusPainted(false);
 	}
 	
 	private void setImage(ImageIcon image, int idImagen) {
